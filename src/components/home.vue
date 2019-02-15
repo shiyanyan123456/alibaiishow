@@ -1,20 +1,4 @@
-<<<<<<< HEAD
-<template>
-  <div>
-    home-------
-  </div>
-</template>
-<script>
-export default {
-  
-}
-</script>
-<style>
 
-</style>
-
-
-=======
 <template>
   <el-container class="container">
     <el-header>
@@ -157,9 +141,9 @@ export default {
   text-align: center;
   line-height: 60px;
 }
-.aside {
-  /* background: red; */
-}
+/* .aside {
+   background: red; 
+} */
 .main {
   background: gray;
 }
@@ -168,4 +152,4 @@ export default {
   text-decoration: none;
 }
 </style>
->>>>>>> dev-login
+

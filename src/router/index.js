@@ -8,12 +8,17 @@ import Users from '@/components/users.vue'
 Vue.use(Router)
 
 export default new Router({
-<<<<<<< HEAD
+
   routes: [
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      children:[{
+        path:'/users',
+        name:'users',
+        component: Users,
+      }]
     },{
       name:'login',
       path:'/login',
@@ -21,26 +26,4 @@ export default new Router({
     }
   ]
 })
-=======
-  routes: [{
-    name: 'home',
-    path: '/',
-    component: Home,
-    children:[{
-      name: 'users',
-      path: '/users',
-      component: Users
-    }]
-  }, {
-    name: 'login',
-    path: '/login',
-    component: Login
-<<<<<<< HEAD
-  }]
-})
->>>>>>> dev-login
-=======
-  }
-]
-})
->>>>>>> dev-login
+
