@@ -13,8 +13,8 @@
   </div>
 </template> 
  <script>
-export default {
-   data() {
+  export default {
+  data() {
     return {
       formdata: {
         username: "",
@@ -22,50 +22,52 @@ export default {
       }
     };
   },
-  methods:{
-    handlelogin(){
+  methods: {
+    async handlelogin() {
       // console.log(1111)
       // console.log(this.formdata)
 
-      this.$http.post(`login`,this.formdata)
-      .then((res)=>{
-       console.log(res)
-       const{
-          data:{
-          data,
-          meta:{msg,status}
-        }
-       }=res
-      //  const{per}={per:"abc"}
-      if(status===200){
-        console.log('login----sucess---')
-      }else{
-        console.log('error---')
+      const res = await this.$http.post(`login`, this.formdata); //异步函数
+      console.log(res);
+      const { 
+        data: {
+           data:{token},
+           meta: { msg, status }
+            }
+           } = res;
+           
+      if(status === 200) {
+
+         localStorage.setItem("token", token);
+        //  console.log('token');
+        //渲染home组件
+        this.$router.push({
+          name: "home"
+        });
+      } else {
+        this.$message.error(msg);
+        //console.log('error---')
       }
-      })
-      .catch(err=>{
-        console.log(err)
-      })
     }
   }
-};
+}; 
 </script>
 
 <style>
-.login-wrap{
+.login-wrap {
   height: 100%;
-  background-color:#324152;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  background-color: #324152;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.login-form{
-  background-color:#fff;
-  width:400px;
-  border-radius:5px;
-  padding:30px;
+.login-form {
+  background-color: #fff;
+  width: 400px;
+  border-radius: 5px;
+  padding: 30px;
 }
-.login-btn{
+.login-btn {
   width: 100%;
 }
 </style>
