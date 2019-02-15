@@ -8,6 +8,9 @@ import App from './App'
 import router from './router'
 import moment from 'moment'
 //登录接口
+
+// 登录接口
+
 // import axios from 'axios'
 // axios.defaults.baseURL='http://localhost:8888/api/private/v1/'
 // Vue.prototype.$http=axios
@@ -31,7 +34,7 @@ new Vue({
   el: '#app',
   router,
   components: {
-     App 
+    App
   },
   template: '<App/>'
 })
