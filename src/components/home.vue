@@ -1,20 +1,4 @@
-<<<<<<< HEAD
-<template>
-  <div>
-    home-------
-  </div>
-</template>
-<script>
-export default {
-  
-}
-</script>
-<style>
 
-</style>
-
-
-=======
 <template>
   <el-container class="container">
     <el-header>
@@ -39,7 +23,7 @@ export default {
     </el-header>
     <el-container>
       <el-aside class="aside" width="200px">
-       
+
         <el-menu default-active="1" :router="true" :unique-opened="true">
           <!-- 用户管理 -->
           <el-submenu index="1">
@@ -47,7 +31,7 @@ export default {
               <i class="el-icon-location"></i>
               <span>用户管理</span>
             </template>
-           
+
             <el-menu-item index="users">
               <i class="el-icon-menu"></i>
               用户列表
@@ -123,28 +107,28 @@ export default {
 <script>
 export default {
 
-  beforeMount() {
-    if (!localStorage.getItem("token")) {
+  beforeMount () {
+    if (!localStorage.getItem('token')) {
       this.$router.push({
-        name: "login"
-      });
+        name: 'login'
+      })
       //  this.$message.warning("退出成功");
     }
   },
   methods: {
     // 退出
-    handleLoginout() {
+    handleLoginout () {
       // 1. 清除token
-      localStorage.clear();
+      localStorage.clear()
       // 2. 跳转到login
       this.$router.push({
-        name: "login"
-      });
+        name: 'login'
+      })
       // 提示
-      this.$message.warning("退出成功");
+      this.$message.warning('退出成功')
     }
   }
-};
+}
 </script>
 
 <style>
@@ -168,4 +152,3 @@ export default {
   text-decoration: none;
 }
 </style>
->>>>>>> dev-login

@@ -1,20 +1,4 @@
-<<<<<<< HEAD
-<template>
-  <div>
-    login---------
-  </div>
-</template>
-<script>
-export default {
-  
-}
-</script>
-<style>
 
-</style>
-
-
-=======
 <template>
   <div class="login-wrap">
     <el-form class="login-form" label-position="top" label-width="80px" :model="formdata">
@@ -28,46 +12,45 @@ export default {
       <el-button @click.prevent="handlelogin()" class="login-btn" type="primary">登录</el-button>
     </el-form>
   </div>
-</template> 
- <script>
-  export default {
-  data() {
+</template>
+<script>
+export default {
+  data () {
     return {
       formdata: {
-        username: "",
-        password: ""
+        username: '',
+        password: ''
       }
-    };
+    }
   },
   methods: {
-    async handlelogin() {
+    async handlelogin () {
       // console.log(1111)
       // console.log(this.formdata)
 
-      const res = await this.$http.post(`login`, this.formdata); //异步函数
-      console.log(res);
-      const { 
+      const res = await this.$http.post(`login`, this.formdata) // 异步函数
+      console.log(res)
+      const {
         data: {
-           data,
-           meta: { msg, status }
-            }
-           } = res;
-           
-      if(status === 200) {
+          data,
+          meta: { msg, status }
+        }
+      } = res
 
-         localStorage.setItem("token", data.token);
+      if (status === 200) {
+        localStorage.setItem('token', data.token)
         //  console.log('token');
-        //渲染home组件
+        // 渲染home组件
         this.$router.push({
-          name: "home"
-        });
+          name: 'home'
+        })
       } else {
-        this.$message.error(msg);
-        //console.log('error---')
+        this.$message.error(msg)
+        // console.log('error---')
       }
     }
   }
-}; 
+}
 </script>
 
 <style>
@@ -88,7 +71,3 @@ export default {
   width: 100%;
 }
 </style>
-
-
-
->>>>>>> dev-login
