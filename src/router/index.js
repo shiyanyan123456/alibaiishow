@@ -7,6 +7,7 @@ import Home from '@/components/home.vue'
 Vue.use(Router)
 
 export default new Router({
+<<<<<<< HEAD
   routes: [
     {
       path: '/',
@@ -19,3 +20,15 @@ export default new Router({
     }
   ]
 })
+=======
+  routes: [{
+    name: 'home',
+    path: '/',
+    component: Home
+  }, {
+    name: 'login',
+    path: '/login',
+    component: Login
+  }]
+})
+>>>>>>> dev-login
