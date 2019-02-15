@@ -7,7 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/base.css'
 import App from './App'
 import router from './router'
-import moment from 'moment'
+// import moment from 'moment'
 //登录接口
 
 // 登录接口
@@ -23,12 +23,9 @@ Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
-<<<<<<< HEAD
 // Vue.filter('fmtdate',(v)=>{
 //   return moment(v).format('YYYY-MM-DD')
 // })
-=======
->>>>>>> dev-users
 Vue.filter('fmtdate', (v) => {
   return moment(v).format('YYYY-MM-DD')
 });
