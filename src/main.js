@@ -12,12 +12,9 @@ import router from './router'
 
 // 登录接口
 
-<<<<<<< HEAD
 // import axios from 'axios'
 // axios.defaults.baseURL='http://localhost:8888/api/private/v1/'
 // Vue.prototype.$http=axios
-=======
->>>>>>> dev-users
 import axios from 'axios'
 axios.defaults.baseURL = 'http://localhost:8888/api/private/v1/'
 Vue.prototype.$http = axios
