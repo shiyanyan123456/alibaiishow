@@ -141,9 +141,9 @@ export default {
   text-align: center;
   line-height: 60px;
 }
-.aside {
-  /* background: red; */
-}
+/* .aside {
+   background: red; 
+} */
 .main {
   background: gray;
 }

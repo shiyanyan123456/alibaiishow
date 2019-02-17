@@ -8,9 +8,7 @@ import '@/assets/css/base.css'
 import App from './App'
 import router from './router'
 // 登录接口
-// import axios from 'axios'
-// axios.defaults.baseURL='http://localhost:8888/api/private/v1/'
-// Vue.prototype.$http=axios
+
 import axios from 'axios'
 axios.defaults.baseURL = 'http://localhost:8888/api/private/v1/'
 Vue.prototype.$http = axios
