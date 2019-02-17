@@ -7,28 +7,21 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/base.css'
 import App from './App'
 import router from './router'
-// import moment from 'moment'
-//登录接口
+import CusBread from './components/cusBread.vue'
 
-// 登录接口
-
-// import axios from 'axios'
-// axios.defaults.baseURL='http://localhost:8888/api/private/v1/'
-// Vue.prototype.$http=axios
-import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:8888/api/private/v1/'
-Vue.prototype.$http = axios
+import HttpServer from './components/http'
 
 Vue.use(ElementUI)
+Vue.use(HttpServer)
 
 Vue.config.productionTip = false
 
-// Vue.filter('fmtdate',(v)=>{
-//   return moment(v).format('YYYY-MM-DD')
-// })
+
 Vue.filter('fmtdate', (v) => {
   return moment(v).format('YYYY-MM-DD')
 });
+
+Vue .component(CusBread.name,CusBread);
 
 /* eslint-disable no-new */
 new Vue({
