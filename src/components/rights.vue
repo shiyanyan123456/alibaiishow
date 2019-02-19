@@ -19,11 +19,7 @@
       </el-table-column>
     </el-table>
     
-    
-    
-    
-    
-    
+
     
     </el-card>
 </template>
