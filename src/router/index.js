@@ -33,7 +33,7 @@ export default new Router({
         component: Roles,
     },{
       path:'/goodslist',
-        name:'goodslist',
+        name:'goods',
         component: Goodslist,
     },{
       path:'/goods',

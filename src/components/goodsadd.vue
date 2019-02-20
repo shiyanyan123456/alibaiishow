@@ -63,10 +63,33 @@
                          </el-tab-pane>
                      <el-tab-pane label="商品属性" name="3">
                          
-                         商品属性
+                        <el-form-item :label="item.attr_name" v-for="(item,i) in arrStatic" :key="item.attr_id">
+                          <el-input v-model="item.attr_vals"></el-input>
+                        </el-form-item>
                          </el-tab-pane>
-                     <el-tab-pane label="商品图片" name="4">商品图片</el-tab-pane>
-                     <el-tab-pane label="商品内容" name="5">商品内容</el-tab-pane>
+                     <el-tab-pane label="商品图片" name="4">
+                       <el-form-item label="添加图片">
+                         <el-upload :headers="headers"
+                                     action="http://localhost:8888/api/private/v1/upload"
+                                     :on-remove="handleRemove"
+                                     :on-success="handleSuccess"
+                                     list-type="picture">
+                                     <el-button size="small" type="primary">点击上传</el-button>
+                         </el-upload>
+                       </el-form-item>
+                       </el-tab-pane>
+
+
+                     <el-tab-pane label="商品内容" name="5">
+                       <el-form-item>
+                         <el-button @click="addGoods()">
+                           添加商品
+                         </el-button>
+                         <quill-editor v-model="form.goods_introduce" class="quill">
+
+                         </quill-editor>
+                       </el-form-item>
+                    </el-tab-pane>
                  </el-tabs>
             </el-form>
 
@@ -75,7 +98,17 @@
     </el-card>
 </template>
 <script>
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
+
+import { quillEditor } from "vue-quill-editor";
+
+
 export default {
+   components: {
+    quillEditor
+  },
   data() {
     return {
       active: "1",
@@ -96,35 +129,104 @@ export default {
         value: "cat_id",
         children: "children"
       },
-      arrDy: []
+      arrDy: [],
+      arrStatic:[],
+      headers:{
+        Authorization: localStorage.getItem("token")
+      }
     };
   },
   created() {
     this.getGoodsCate();
   },
   methods: {
+        async addGoods() {
+      this.form.goods_cat = this.selectedOptions.join(",");
+      const arr1 = this.arrDy.map(item => {
+        return { attr_id: item.attr_id, attr_value: item.attr_vals };
+      });
+      const arr2 = this.arrStatic.map(item => {
+        return { attr_id: item.attr_id, attr_value: item.attr_vals };
+      });
+
+      this.form.attrs = [...arr1, ...arr2];
+     
+      const res = await this.$http.post(`goods`, this.form);
+      console.log(res);
+      const {
+        meta: { msg, status }
+      } = res.data;
+      if (status === 201) {
+        // 列表
+        this.$router.push({
+          name: "goods"
+        });
+      } else {
+        this.$message.error(msg);
+      }
+    },
+      
+       //移除
+       handleRemove(file,fileList){
+              const Index=this.form.pics.findIndex(item=>{
+                return item.pic===file.response.data.tem_path;
+              })
+              this.form.pic.splice(Index,1)
+       },
+       handleSuccess(res,file,fileList){
+         const tmpPath = res.data.tmp_path;
+      this.form.pics.push({
+        pic: tmpPath
+         })
+       },
+
+
+
     //点击tabs切换触发
     async changeTab() {
       if (this.active === "2" || this.active === "3") {
         if (this.selectedOptions.length !== 3) {
           this.$message.error("请先选择三级分类！");
-          return;
+          if(this.active==="2"){
+            this.arrDy=[];
+          }else{
+            this.arrStatic=[]
+          }
+         return
         }
-        const res = await this.$http.get(
+
+
+       if(this.active==="2"){
+          const res = await this.$http.get(
           `categories/${this.selectedOptions[2]}/attributes?sel=many`
         );
         console.log(res);
         const { meta: { msg, status }, data } = res.data;
         if (status === 200) {
           this.arrDy = data;
-           this.arrDy.forEach(item => {
-              item.attr_vals =
-                item.attr_vals.trim().length === 0
-                  ? []
-                  : item.attr_vals.trim().split(",");
-            });
+          this.arrDy.forEach(item => {
+            item.attr_vals =
+              item.attr_vals.trim().length === 0
+                ? []
+                : item.attr_vals.trim().split(",");
+          });
           console.log(this.arrDy);
         }
+       }
+
+       if(this.active==="3"){
+         const res=await this.$http.get(
+          `categories/${this.selectedOptions[2]}/attributes?sel=only`
+         );
+         const {
+           meta:{msg,status},
+           data
+         }=res.data;
+         if(status===200){
+           this.arrStatic=data;
+           console.log(this.arrStatic)
+         }
+       }
       }
     },
 
@@ -134,7 +236,7 @@ export default {
       const { meta: { msg, status }, data } = res.data;
       if (status === 200) {
         this.options = data;
-        
+
         console.log(this.options);
       }
     },
