@@ -58,7 +58,7 @@
               <i class="el-icon-location"></i>
               <span>商品管理</span>
             </template>
-            <el-menu-item index="1-1">
+            <el-menu-item index="goodslist">
               <i class="el-icon-menu"></i>
               商品列表
             </el-menu-item>

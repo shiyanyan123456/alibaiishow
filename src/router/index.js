@@ -6,6 +6,8 @@ import Home from '@/components/home.vue'
 import Users from '@/components/users.vue'
 import Rights from'@/components/rights.vue'
 import Roles from '@/components/roles.vue'
+import Goodslist from '@/components/goodslist.vue'
+import Goodsadd from '@/components/goodsadd.vue'
 
 Vue.use(Router)
 
@@ -29,6 +31,14 @@ export default new Router({
       path:'/roles',
         name:'roles',
         component: Roles,
+    },{
+      path:'/goodslist',
+        name:'goodslist',
+        component: Goodslist,
+    },{
+      path:'/goods',
+        name:'goodsadd',
+        component: Goodsadd,
     }
   ]
     },{
