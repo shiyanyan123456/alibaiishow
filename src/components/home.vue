@@ -62,11 +62,11 @@
               <i class="el-icon-menu"></i>
               商品列表
             </el-menu-item>
-            <el-menu-item index="1-1">
+            <el-menu-item index="params">
               <i class="el-icon-menu"></i>
               分类参数
             </el-menu-item>
-            <el-menu-item index="1-1">
+            <el-menu-item index="categories">
               <i class="el-icon-menu"></i>
               商品分类
             </el-menu-item>
@@ -78,7 +78,7 @@
               <i class="el-icon-location"></i>
               <span>订单管理</span>
             </template>
-            <el-menu-item index="1-1">
+            <el-menu-item index="order">
               <i class="el-icon-menu"></i>
               订单列表
             </el-menu-item>
@@ -89,7 +89,7 @@
               <i class="el-icon-location"></i>
               <span>数据统计</span>
             </template>
-            <el-menu-item index="1-1">
+            <el-menu-item index="reports">
               <i class="el-icon-menu"></i>
               数据报表
             </el-menu-item>

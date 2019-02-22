@@ -250,7 +250,7 @@ export default {
   margin-bottom: 20px;
 }
 .form {
-  height: 400px;
+  height: 320px;
   overflow: auto;
 }
 </style>
